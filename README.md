@@ -3,7 +3,7 @@
 
 Simplify your Flutter code readability by auto-fading lesser important widgets.
 
-![Demo](./images/demo.gif)
+![Before vs After](./images/before-vs-after.jpg)
 
 
 ## Commands
@@ -22,9 +22,9 @@ Simplify your Flutter code readability by auto-fading lesser important widgets.
 | `flutter-highlighter.excludedWidgets` | `array` | `[]` | `'Padding'` | List of widgets to disable the fading. Use the widgets name.  |
 
 
-## Before vs After
+## Demo
 
-![Before vs After](./images/before-after.jpg)
+![Demo](./images/demo.gif)
 
 
 ## Feedback

@@ -2,13 +2,33 @@
   "name": "flutter-highlighter",
   "displayName": "Flutter Highlighter",
   "description": "Fades out less important widgets in the tree.",
-  "version": "0.0.1",
+  "publisher": "zascal",
+	"license": "MIT",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Other"
+    "Formatters", "Themes", "Linters"
   ],
+  "keywords": [
+    "flutter",
+    "highlight",
+    "inline",
+    "style"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+  "icon": "./icon.png",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/dozsolti/flutter-highlighter"
+	},
   "main": "./src/extension.js",
   "contributes": {
     "commands": [

@@ -3,13 +3,15 @@
   "displayName": "Flutter Highlighter",
   "description": "Focus on priorities and overlook the rest.",
   "publisher": "zascal",
-	"license": "MIT",
-  "version": "0.0.4",
+  "license": "MIT",
+  "version": "0.0.5",
   "engines": {
-    "vscode": "^1.96.0"
+    "vscode": "^1.85.0"
   },
   "categories": [
-    "Formatters", "Themes", "Linters"
+    "Formatters",
+    "Themes",
+    "Linters"
   ],
   "keywords": [
     "flutter",
@@ -21,14 +23,14 @@
     "ui",
     "workspace"
   ],
-	"activationEvents": [
-		"onStartupFinished"
-	],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "icon": "./icon.png",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/dozsolti/flutter-highlighter"
-	},
+    "type": "git",
+    "url": "https://github.com/dozsolti/flutter-highlighter"
+  },
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
@@ -73,7 +75,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "20.x",
-    "@types/vscode": "^1.96.0",
+    "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
     "eslint": "^9.16.0",

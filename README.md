@@ -1,65 +1,38 @@
-# flutter-highlighter README
 
-This is the README for your extension "flutter-highlighter". After writing up a brief description, we recommend including the following sections.
+# Flutter Highlighter
 
-## Features
+Simplify your Flutter code readability by auto-fading lesser important widgets.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+![Demo](./images/demo.gif)
 
-For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
+## Commands
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| Command | Description |
+| --- | --- |
+| `flutter-highlighter.highlight` | Highlights widgets in the current file. |
 
-## Requirements
+## Settings
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+| Command | Type | Default | Example | Description |
+| --- | --- | --- | --- | --- |
+| `flutter-highlighter.highlightOnFocus` | `boolean` | `true` | | Should it automatically highlight the focused widget? |
+| `flutter-highlighter.opacity` | `number` | `0.5` | | The opacity of the faded widgets. Must be between `0 - 0.99`. |
+| `flutter-highlighter.includedWidgets` | `array` | `[]` | `{ name: "Form", type: "children" }` `{ name: "SizedBox", type: "custom", regex: regexSizedBox }` | List of extra widgets to fade. Currently it supports `child`, `children` or `custom` types. |
+| `flutter-highlighter.excludedWidgets` | `array` | `[]` | `'Padding'` | List of widgets to disable the fading. Use the widgets name.  |
 
-## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Before vs After
 
-For example:
+![Before vs After](./images/before-after.jpg)
 
-This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+## Feedback
 
-## Known Issues
+If you have any feedback, please reach out to me in the Issues tab.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
 
-## Release Notes
+## License
 
-Users appreciate release notes as you update your extension.
+[MIT](https://choosealicense.com/licenses/mit/)
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

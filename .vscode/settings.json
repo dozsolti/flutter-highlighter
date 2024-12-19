@@ -3,5 +3,6 @@
         "activityBar.background": "#2E2E2D",
         "titleBar.activeBackground": "#40403F",
         "titleBar.activeForeground": "#FAFAF9"
-    }
+    },
+    "typescript.disableAutomaticTypeAcquisition": true
 }

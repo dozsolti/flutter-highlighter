@@ -6,12 +6,21 @@ export default [{
         globals: {
             ...globals.commonjs,
             ...globals.node,
-            ...globals.mocha,
+            ...globals.jest,
         },
 
         ecmaVersion: 2022,
         sourceType: "module",
     },
+
+    "overrides": [
+        {
+            "files": ["tests/**/*"],
+            "env": {
+                "jest": true
+            }
+        }
+    ],
 
     rules: {
         "no-const-assign": "warn",

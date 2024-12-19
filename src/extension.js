@@ -1,101 +1,55 @@
-const { regx } = require('./regx');
-const vscode = require('vscode');
-var window = vscode.window;
-var workspace = vscode.workspace;
+const { Settings } = require('./settings');
+const { highlighter, ExtensionHighlight } = require('./commands/highlight');
 
-var DEFAULT_STYLE = {
-	opacity: "0.5",
-};
+const vscode = require('vscode');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
-function activate(context) {
+function activate({ subscriptions }) {
+	Settings.load();
 
-	var activeEditor = window.activeTextEditor;
-	// var pattern = /((Padding|Center|Expanded|Container)\(.+?(?=child)child:\s*)|((Column|Row)\(.+?(?=children)children:[^[]*)|((Scaffold)\(.+?(?=appBar)appBar:\s*)/gis;
+	highlighter.setActiveEditor(vscode.window.activeTextEditor);
+	highlighter.reloadSettings();
+	highlighter.highlight();
 
-	console.log(1)
-	function init() {
-		console.log(2)
-		if (!activeEditor || !activeEditor.document) {
-			return;
-		}
-		var text = activeEditor.document.getText();
-		var mathes = {}, match, decorationTypes = {};
-
-		activeEditor.setDecorations(window.createTextEditorDecorationType({}),
-			[new vscode.Range(
-				activeEditor.document.positionAt(0),
-				activeEditor.document.positionAt(text.length)
-			)]
-		);
-		var styleForRegExp = Object.assign({}, DEFAULT_STYLE, {
-			overviewRulerLane: vscode.OverviewRulerLane.Right
-		});
-
-		while (match = regx.exec(text)) {
-			var startPos = activeEditor.document.positionAt(match.index);
-			var endPos = activeEditor.document.positionAt(match.index + match[0].length);
-			var decoration = {
-				range: new vscode.Range(startPos, endPos)
-			};
-
-			var matchedValue = match[0];
-			if (!false) {
-				matchedValue = matchedValue.toUpperCase();
-			}
-
-			if (mathes[matchedValue]) {
-				mathes[matchedValue].push(decoration);
-			} else {
-				mathes[matchedValue] = [decoration];
-			}
-
-			if (!decorationTypes[matchedValue]) {
-				decorationTypes[matchedValue] = window.createTextEditorDecorationType(styleForRegExp);
-			}
-
-			Object.keys(decorationTypes).forEach((v) => {
-				if (!false) {
-					v = v.toUpperCase();
-				}
-				var rangeOption = true && mathes[v] ? mathes[v] : [];
-				var decorationType = decorationTypes[v];
-				activeEditor.setDecorations(decorationType, rangeOption);
-			})
-
-		}
-
-		console.log("Hi");
-	}
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('flutter-highlighter.init', function () {
-		// The code you place here will be executed every time your command is executed
-
-		init();
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Flutter Highlighter!');
+	const highlightCommand = vscode.commands.registerCommand(ExtensionHighlight.command, function () {
+		highlighter.setActiveEditor(vscode.window.activeTextEditor);
+		highlighter.highlight();
 	});
 
-	context.subscriptions.push(disposable);
+	const changeActiveTextEditor = vscode.window.onDidChangeActiveTextEditor(() => {
+		if (!vscode.window.activeTextEditor) return;
 
-	window.onDidChangeActiveTextEditor(function (editor) {
-		activeEditor = editor;
-		if (editor) {
-			init();
+		highlighter.setActiveEditor(vscode.window.activeTextEditor);
+		highlighter.highlight();
+	});
+
+	const changeTextEditorSelection = vscode.window.onDidChangeTextEditorSelection(() => {
+		if (!Settings.settings.highlightOnFocus) return;
+		highlighter.highlight();
+	});
+
+
+	const changeConfiguration = vscode.workspace.onDidChangeConfiguration((event) => {
+		if (event.affectsConfiguration(Settings.extensionId)) {
+			Settings.load();
+			highlighter.reloadSettings();
 		}
-	}, null, context.subscriptions);
-
-	workspace.onDidChangeTextDocument(function (event) {
-		if (activeEditor && event.document === activeEditor.document) {
-			init();
-		}
-	}, null, context.subscriptions);
+	})
 
 
-}
+	subscriptions.push(changeActiveTextEditor)
+	subscriptions.push(changeTextEditorSelection)
+	subscriptions.push(changeConfiguration)
 
-module.exports.activate = activate
+	subscriptions.push(highlightCommand);
+
+};
+
+module.exports.activate = activate;
+
+module.exports.deactivate = ({ subscriptions }) => {
+
+	subscriptions.forEach((subscription) => subscription.dispose())
+};

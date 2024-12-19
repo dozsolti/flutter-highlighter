@@ -9,29 +9,57 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "flutter-highlighter.init",
-        "title": "Highlight"
+        "command": "flutter-highlighter.highlight",
+        "title": "Flutter Highlight Widgets"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Flutter Highlighter",
+      "properties": {
+        "flutter-highlighter.highlightOnFocus": {
+          "order": 1,
+          "type": "boolean",
+          "default": true,
+          "description": "Should it automatically highlight the focused widget?"
+        },
+        "flutter-highlighter.opacity": {
+          "type": "number",
+          "default": 0.5,
+          "description": "The opacity of the faded widgets.",
+          "minimum": 0,
+          "maximum": 0.99
+        },
+        "flutter-highlighter.includedWidgets": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "List of extra widgets to fade. Currently it supports `child`, `children` or `custom` types.\nEx: `{ name: \"Form\", type: \"children\" }`, `{ name: \"SizedBox\", type: \"custom\", regex: regexSizedBox }`."
+        },
+        "flutter-highlighter.excludedWidgets": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "List of widgets to disable the fading. Use the widgets name, ex. `'Padding'`"
+        }
+      }
+    }
   },
   "scripts": {
-    "test": "vscode-test"
+    "test": "jest",
+    "build": "vsce package"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
+    "@types/jest": "^29.5.14",
     "@types/node": "20.x",
     "@types/vscode": "^1.96.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
-    "eslint": "^9.16.0"
+    "eslint": "^9.16.0",
+    "jest": "^29.7.0"
   },
   "dependencies": {
-    "ts-regex-builder": "^1.8.2",
-    "verbal-expressions": "^1.0.2"
+    "ts-regex-builder": "^1.8.2"
   }
 }

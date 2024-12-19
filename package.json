@@ -1,7 +1,7 @@
 {
   "name": "flutter-highlighter",
   "displayName": "Flutter Highlighter",
-  "description": "Fades out less important widgets in the tree.",
+  "description": "Focus on priorities and overlook the rest.",
   "publisher": "zascal",
 	"license": "MIT",
   "version": "0.0.2",

@@ -1,14 +1,18 @@
-const { regexSizedBox } = require('../../src/utils/regex/prefabs');
-const { FLAGS, prefixes } = require('../../src/utils/regex/shared');
-
-const r = require('ts-regex-builder');
-
-const paranthesesOrChild = /.+?(?:(?=\))\)\s*,?|(?=child)child)/;
+const { generateRegex, generatePropertyRegex } = require('../../src/utils/regex');
 
 it("should print my regex", () => {
 
-    const regx = regexSizedBox;
+    const widgetSelectorRegx = generateRegex({ excludes: [], includes: [] });
 
-    console.log(regx)
-    expect(regx).not.toBeNull();
+    console.log("My widget selector regex is:", widgetSelectorRegx);
+
+    expect(widgetSelectorRegx).not.toBeNull();
+
+    const widgetName = "Column";
+
+    const propertyRegex = generatePropertyRegex(widgetName);
+
+    console.log(`Regex for ${widgetName}'s property regex is:`, propertyRegex);
+
+    expect(propertyRegex).not.toBeNull();
 })

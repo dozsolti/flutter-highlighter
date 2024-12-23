@@ -6,7 +6,7 @@ const Settings = {
     settings: {
         highlightOnFocus: true,
         opacity: 0.5,
-        includedWidgets: [],
+        includedWidgets: {},
         excludedWidgets: [],
     },
 

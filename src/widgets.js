@@ -1,27 +1,25 @@
-const { regexSizedBox } = require('./utils/regex/prefabs');
+const WIDGET_CATALOG = {
+    "Align": { propertyName: "child" },
+    "Padding": { propertyName: "child" },
+    "Center": { propertyName: "child" },
+    "Expanded": { propertyName: "child" },
+    "Container": { propertyName: "child" },
+    "ConstrainedBox": { propertyName: "child" },
+    "FittedBox": { propertyName: "child" },
+    "Material": { propertyName: "child" },
+    "SliverToBoxAdapter": { propertyName: "child" },
+    "SingleChildScrollView": { propertyName: "child" },
+    "Positioned": { propertyName: "child" },
+    "SizedBox": { propertyName: "child" },
 
-const widgetList = [
-    // Child
-    { name: "Align", type: "child", },
-    { name: "Padding", "type": "child", },
-    { name: "Center", type: "child" },
-    { name: "Expanded", type: "child" },
-    { name: "Container", type: "child" },
-    { name: "ConstrainedBox", type: "child" },
-    { name: "FittedBox", type: "child" },
-    { name: "Material", type: "child" },
-    { name: "SliverToBoxAdapter", type: "child" },
-    { name: "SingleChildScrollView", type: "child" },
-    { name: "Positioned", type: "child" },
+    "Column": { propertyName: "children" },
+    "Row": { propertyName: "children" },
+    "Stack": { propertyName: "children" },
 
-    // Children
-    { name: "Column", type: "children" },
-    { name: "Row", type: "children" },
-    { name: "Stack", type: "children" },
+    // "BlocBuilder": { propertyName: "builder", wrapper: "{}" }
 
-
-    // Custom
-    { name: "SizedBox", type: "custom", regex: regexSizedBox },
+    // // Custom
+    // { name: "SizedBox", type: "custom", regex: regexSizedBox },
 
     // Delegate
     // { name: "SizedBox", type: "delegate", regex: regexSizedBox },
@@ -33,7 +31,6 @@ const widgetList = [
     // with builder function: LayoutBuilder ListView
     // some have delegate SliverPersistentHeader 
     // dont fade out if it's "return Column(..."
+}
 
-];
-
-module.exports = { widgetList };
+module.exports = { WIDGET_CATALOG };

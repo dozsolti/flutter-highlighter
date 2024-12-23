@@ -4,7 +4,7 @@
   "description": "Focus on priorities and overlook the rest.",
   "publisher": "zascal",
   "license": "MIT",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -56,9 +56,9 @@
           "maximum": 0.99
         },
         "flutter-highlighter.includedWidgets": {
-          "type": "array",
-          "default": [],
-          "markdownDescription": "List of extra widgets to fade. Currently it supports `child`, `children` or `custom` types.\nEx: `{ name: \"Form\", type: \"children\" }`, `{ name: \"SizedBox\", type: \"custom\", regex: regexSizedBox }`."
+          "type": "object",
+          "default": {},
+          "markdownDescription": "Extra widgets you want to support. Ex. `\"ScrollPage\": { \"propertyName\": \"child\" }`. See docs for details."
         },
         "flutter-highlighter.excludedWidgets": {
           "type": "array",

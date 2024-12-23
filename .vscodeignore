@@ -8,3 +8,11 @@ vsc-extension-quickstart.md
 **/*.map
 **/eslint.config.mjs
 **/.vscode-test.*
+
+images/**
+!images/before-vs-after.jpg
+
+flutter/**
+parser/**
+
+todos.md

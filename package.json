@@ -4,7 +4,7 @@
   "description": "Focus on priorities and overlook the rest.",
   "publisher": "zascal",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -58,7 +58,7 @@
         "flutter-highlighter.includedWidgets": {
           "type": "object",
           "default": {},
-          "markdownDescription": "Extra widgets you want to support. Ex. `\"ScrollPage\": { \"propertyName\": \"child\" }`. See docs for details."
+          "markdownDescription": "Extra widgets you want to support. Ex. `\"StreamBuilder\": { properties: [{ name: \"stream\" }, { name: \"builder\", type: \"function\" }] }`. See docs for details."
         },
         "flutter-highlighter.excludedWidgets": {
           "type": "array",

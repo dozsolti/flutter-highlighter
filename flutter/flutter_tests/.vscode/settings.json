@@ -4,4 +4,10 @@
         "titleBar.activeBackground": "#1B4908",
         "titleBar.activeForeground": "#F3FDEF"
     },
+    "flutter-highlighter.excludedWidgets": [
+        "Container"
+    ],
+    "flutter-highlighter.includedWidgets": {
+        "ScrollPage": { "propertyName": "child" },
+    },
 }

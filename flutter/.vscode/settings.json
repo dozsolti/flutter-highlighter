@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#382A2E",
+        "titleBar.activeBackground": "#4E3B40",
+        "titleBar.activeForeground": "#FBFAFA"
+    },
+    "flutter-highlighter.includedWidgets": {
+        "InputDecoration": { "properties": [{"name":"hintText"}, {"name": "errorText"}] },
+    },
+}

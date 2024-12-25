@@ -1,9 +1,8 @@
 const vscode = require('vscode');
 
 const { Settings } = require('../settings');
-const { WIDGET_CATALOG } = require('../widgets');
-const { findClosing } = require('../utils/parser');
-const { generateRegex, generatePropertyRegex } = require('../utils/regex');
+const { parseMatch } = require('../utils/parser');
+const { generateRegex } = require('../utils/regex');
 
 class ExtensionHighlight {
 
@@ -103,26 +102,8 @@ class ExtensionHighlight {
      * @param {RegExpExecArray} match 
      */
     _exec(match) {
-        const widgetName = match[0]
-            .trim()
-            .replace(/const\s+/, '')
-            .replace(/[^a-z]/gi, '');
 
-        if (!(widgetName in WIDGET_CATALOG || widgetName in this.includedWidgets))
-            throw `Widget ${widgetName} not configured.`;
-
-        const widget = WIDGET_CATALOG[widgetName] || this.includedWidgets[widgetName];
-        const propertyName = widget.propertyName;
-        const propertyRegex = generatePropertyRegex(propertyName);
-
-        let parentheses = '()';
-        if (widget.wrapper)
-            parentheses = widget.wrapper;
-        else
-            if (propertyName == 'children')
-                parentheses = '[]';
-
-        const sections = findClosing(match.input, match.index, propertyRegex, parentheses).map(s =>
+        const sections = parseMatch(match, this.includedWidgets).map(s =>
             new vscode.Range(
                 this.activeEditor.document.positionAt(s.startIndex),
                 this.activeEditor.document.positionAt(s.endIndex),
